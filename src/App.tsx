@@ -1,9 +1,9 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import Title from "./Title/title";
 import { ReactDOM } from "react";
-import { convertToRaw, Editor, EditorState, RichUtils, DraftInlineStyle, ContentState, Modifier} from "draft-js";
+import { convertToRaw, Editor, EditorState, RichUtils, DraftInlineStyle, ContentState, Modifier, convertFromRaw} from "draft-js";
 import "draft-js/dist/Draft.css";
 import InlineStyleControls, { inlineStyles } from "./InlineStylesControls";
 
@@ -14,7 +14,15 @@ function App() {
         EditorState.createEmpty()
     );
 
-
+    useEffect(() => {
+      const savedContentState = localStorage.getItem('editorState');
+      if(savedContentState != null)
+      {
+        const deserializedContentState = JSON.parse(savedContentState);
+        const updateState = EditorState.createWithContent(convertFromRaw(deserializedContentState));
+        setEditorState(updateState);
+      }
+    }, [])
     const handleEditorChange = (newState: any) => {
         setEditorState(newState);
         const rawContentState = convertToRaw(newState.getCurrentContent());
@@ -23,14 +31,28 @@ function App() {
         if(text.length > 1)
           subString = text.substring(text.length-2, text.length);
         subString2 = text.substring(text.length-3, text.length);
-        subString2 = text.substring(text.length-3, text.length);
-        if(subString == "* ")
-          delteLastCharacters(2, text, "BOLD");
-        else if(subString == "# ")
-          delteLastCharacters(2, text, "FONT_SIZE_30");
+        subString3 = text.substring(text.length-4, text.length);
+        if(subString3 == "*** ")
+          delteLastCharacters(4, text, "UNDERLINE");
+        else if(subString2 == "** ")
+          delteLastCharacters(3, text, "FONT_RED");
+        else {
+          if(subString == "* ")
+            delteLastCharacters(2, text, "BOLD");
+          else if(subString == "# ")
+            delteLastCharacters(2, text, "FONT_SIZE_30");
+        }
+
+        
         console.log(subString);
     }
 
+    const onSave = () => {
+      const contentState  = editorState.getCurrentContent();
+      const serializedContentState = JSON.stringify(convertToRaw(contentState));
+      localStorage.setItem('editorState', serializedContentState);
+    }
+    
     const delteLastCharacters = (len: number, text: string, style: string) => {
         toggleInlineStyle(style);
         const currentInlineStyle = editorState.getCurrentInlineStyle;
@@ -81,6 +103,9 @@ function App() {
       },
       FONT_SIZE_30: {
         fontSize: "30px"
+      },
+      FONT_RED: {
+        color: "red"
       }
     };
 
@@ -92,7 +117,7 @@ function App() {
 
     return (
         <div className="App">
-            <Title />
+            <Title onSave={onSave} text={editorState}/>
             <div className="m-10"
                 style={{
                     border: "1px solid black",
