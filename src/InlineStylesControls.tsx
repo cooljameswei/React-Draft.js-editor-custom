@@ -6,7 +6,7 @@ export const inlineStyles = [
   { label: "U", desc: "underline", style: "UNDERLINE" },
   { label: "S", desc: "line-through", style: "STRIKETHROUGH" },
   { label: "H1", style: "FONT_SIZE_30", desc:  "heading" },
-  { label: "R", style: "FONT_RED", desc: "text-red"}
+  { label: "R", style: "FONT_RED", desc: "text-red-600"}
 ];
 
 

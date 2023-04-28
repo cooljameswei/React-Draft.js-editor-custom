@@ -5,11 +5,14 @@ This project used draft.js and customize some style after typing some keys
 ## How to run
 
 In the project directory, you can install packages using yran:
+```
+yarn install
+```
 
-### `yarn install`
+```
+yarn start
+```
 
-
-### `yarn start`
 
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
@@ -18,18 +21,30 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 You might see this image once you run the app.
 
-!(https://github.com/tsremarkable/React-Sorcerer-test/blob/main/public/home.jpg)
+![home](https://user-images.githubusercontent.com/110060055/235153797-fae9f1f6-632f-4cf1-8409-2e0d5d3a5e4e.jpg)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+**Note: There're two ways to set style not only clicking the button shown on the image**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## - To set the unset the Bold Style
+### You can set the Bold Style after typing `"* and space"` and unset typing again `"* and space"`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## - Header Style
+### After typing `"# and space"` and unset typing again `"# and space"`
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## - Text Color to Red
+### After typing `"** and space"` and unset typing again `"** and space"`
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+
+## - UnderLine Style
+### You can set the Bold Style after typing `"*** and space"` and unset typing again `"*** and space"`
+
+
+## Save to LocalStorage
+### Cliking Save button will save content on editor to `localstorage` and won't disappear after you refer the page.
+
+
+
+## Result page look like this
+
