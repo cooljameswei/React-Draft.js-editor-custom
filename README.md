@@ -1,35 +1,24 @@
-# Getting Started with Create React App
+# Getting Started
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project used draft.js and customize some style after typing some keys
 
-## Available Scripts
+## How to run
 
-In the project directory, you can run:
+In the project directory, you can install packages using yran:
+
+### `yarn install`
+
 
 ### `yarn start`
 
-Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `yarn test`
+# How this works
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+You might see this image once you run the app.
 
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
+!(http://url/to/img.png)
 
 **Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 

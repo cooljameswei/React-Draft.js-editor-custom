@@ -23,6 +23,8 @@ function App() {
         setEditorState(updateState);
       }
     }, [])
+
+    //on Editor Change
     const handleEditorChange = (newState: any) => {
         setEditorState(newState);
         const rawContentState = convertToRaw(newState.getCurrentContent());
@@ -47,12 +49,15 @@ function App() {
         console.log(subString);
     }
 
+
+    //on Save button clicked
     const onSave = () => {
       const contentState  = editorState.getCurrentContent();
       const serializedContentState = JSON.stringify(convertToRaw(contentState));
       localStorage.setItem('editorState', serializedContentState);
     }
     
+    //Set Style as customize
     const delteLastCharacters = (len: number, text: string, style: string) => {
         toggleInlineStyle(style);
         const currentInlineStyle = editorState.getCurrentInlineStyle;
@@ -88,7 +93,6 @@ function App() {
 
           const newState = RichUtils.toggleInlineStyle(updatedEditorState, style);
           const newState2 = RichUtils.toggleBlockType(newState, "header-one");
-        // updatedEditorState = RichUtils.applyInlineStyle(updatedEditorState, currentInlineStyle, newSelection);
           setEditorState(newState2);
     }
 
