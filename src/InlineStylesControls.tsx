@@ -14,7 +14,7 @@ interface InlineStyleControlsProps {
       onToggle: (inlineStyle: string) => void;
     }
 
-const InlineStyleControls = ({ currentInlineStyle, onToggle }:  InlineStyleControlsProps) => {
+const InlineStyleControls = ({ currentInlineStyle, onToggle}:  InlineStyleControlsProps) => {
   return (
     <div>
       {inlineStyles.map(type => (
