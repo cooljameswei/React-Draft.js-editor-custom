@@ -1,19 +1,21 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
+import * as React from 'react'
 import logo from "./logo.svg";
 import "./App.css";
 import Title from "./Title/title";
 import { ReactDOM } from "react";
-import { convertToRaw, Editor, EditorState, RichUtils, DraftInlineStyle, ContentState, Modifier, convertFromRaw} from "draft-js";
+import {convertToRaw, Editor, EditorState, RichUtils, DraftInlineStyle, ContentState, Modifier, convertFromRaw, getDefaultKeyBinding, KeyBindingUtil} from "draft-js";
 import "draft-js/dist/Draft.css";
 import InlineStyleControls, { inlineStyles } from "./InlineStylesControls";
 
-
+const { hasCommandModifier } = KeyBindingUtil;
 function App() {
     const [editorState, setEditorState] = useState(() =>
         EditorState.createEmpty()
     );
 
     useEffect(() => {
+      // handleKeyCommand = handleKeyCommand.bind();
       const savedContentState = localStorage.getItem('editorState');
       if(savedContentState != null)
       {
@@ -27,25 +29,30 @@ function App() {
     const handleEditorChange = (newState: any) => {
         setEditorState(newState);
         const rawContentState = convertToRaw(newState.getCurrentContent());
-        let text = rawContentState.blocks[0].text;
-        let subString, subString2, subString3;
-        if(text.length > 1)
-          subString = text.substring(text.length-2, text.length);
-        subString2 = text.substring(text.length-3, text.length);
-        subString3 = text.substring(text.length-4, text.length);
-        if(subString3 == "*** ")
-          delteLastCharacters(4, text, "UNDERLINE");
-        else if(subString2 == "** ")
-          delteLastCharacters(3, text, "FONT_RED");
-        else {
-          if(subString == "* ")
-            delteLastCharacters(2, text, "BOLD");
-          else if(subString == "# ")
-            delteLastCharacters(2, text, "FONT_SIZE_30");
-        }
+        // let text = rawContentState.blocks[0].text;
+        let text= '';
+        rawContentState.blocks.forEach(block => {
+          text = block.text;
 
-        
-        console.log(subString);
+
+          let subString, subString2, subString3, last;
+          last = text.substring(text.length-1, text.length);
+          let value = last.valueOf();
+            subString = text.substring(text.length-2, text.length);
+          subString2 = text.substring(text.length-3, text.length);
+          subString3 = text.substring(text.length-4, text.length);
+          if(subString3 == "*** ")
+            delteLastCharacters(4, text, "UNDERLINE");
+          else if(subString2 == "** ")
+            delteLastCharacters(3, text, "FONT_RED");
+          else {
+            if(subString == "* ")
+              delteLastCharacters(2, text, "BOLD");
+            else if(subString == "# ")
+              delteLastCharacters(2, text, "FONT_SIZE_30");
+          }
+        });
+
     }
 
 
@@ -95,6 +102,23 @@ function App() {
           setEditorState(newState2);
     }
 
+    const keyBindingFn = (e: any) => {
+      // if(e.keyCode == 13)
+      //   return 'default-style';
+      return getDefaultKeyBinding(e);
+    }
+
+    const handleKeyCommand = (command: string) => {
+      if(command === 'default-style')
+      {
+        console.log("asdfa");
+        // Remove all inline styles from the editor
+       
+        return "handled";
+      }
+      return 'not-handled';
+    }
+
     const editor = useRef<any>(null);
     const focusEditor = () => {
         editor.current?.focus();
@@ -139,6 +163,8 @@ function App() {
                     customStyleMap={customStyleMap}
                     editorState={editorState}
                     onChange={handleEditorChange}
+                    keyBindingFn={keyBindingFn}
+                    handleKeyCommand={handleKeyCommand}
                     placeholder="Write something!"
                 />
             </div>

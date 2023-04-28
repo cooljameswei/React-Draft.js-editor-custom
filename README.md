@@ -41,10 +41,11 @@ You might see this image once you run the app.
 ### You can set the Bold Style after typing `"*** and space"` and unset typing again `"*** and space"`
 
 
-## Save to LocalStorage
+## - Save to LocalStorage
 ### Cliking Save button will save content on editor to `localstorage` and won't disappear after you refer the page.
 
 
 
 ## Result page look like this
+
 
