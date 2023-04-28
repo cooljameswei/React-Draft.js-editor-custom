@@ -7,7 +7,6 @@ import { convertToRaw, Editor, EditorState, RichUtils, DraftInlineStyle, Content
 import "draft-js/dist/Draft.css";
 import InlineStyleControls, { inlineStyles } from "./InlineStylesControls";
 
-// import { applyInlineStyle } from "draft-js-modifiers";
 
 function App() {
     const [editorState, setEditorState] = useState(() =>

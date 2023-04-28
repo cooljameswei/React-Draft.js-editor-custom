@@ -22,10 +22,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 You might see this image once you run the app.
 
 ![home](https://user-images.githubusercontent.com/110060055/235153797-fae9f1f6-632f-4cf1-8409-2e0d5d3a5e4e.jpg)
-<<<<<<< HEAD
-=======
-
->>>>>>> b004201f8a29e24bacb8d8edcdecfeb0a2c3f35e
 
 **Note: There're two ways to set style not only clicking the button shown on the image**
 
