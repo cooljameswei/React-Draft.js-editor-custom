@@ -18,7 +18,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 You might see this image once you run the app.
 
-!(http://url/to/img.png)
+!(https://github.com/tsremarkable/React-Sorcerer-test/blob/main/public/home.jpg)
 
 **Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
